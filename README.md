@@ -277,3 +277,378 @@ NAME         READY   STATUS    RESTARTS   AGE
 myfirstpod   1/1     Running   0          5m48s
 pod1         0/1     Error     0          9d
 ```
+
+## Get info of a already created pod in yaml format
+```
+$ kubectl get po myfirstpod -o yaml
+```
+##### Result
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2020-06-20T14:29:33Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:spec:
+        f:containers:
+          k:{"name":"container1"}:
+            .: {}
+            f:image: {}
+            f:imagePullPolicy: {}
+            f:name: {}
+            f:ports:
+              .: {}
+              k:{"containerPort":80,"protocol":"TCP"}:
+                .: {}
+                f:containerPort: {}
+                f:protocol: {}
+            f:resources: {}
+            f:terminationMessagePath: {}
+            f:terminationMessagePolicy: {}
+        f:dnsPolicy: {}
+        f:enableServiceLinks: {}
+        f:restartPolicy: {}
+        f:schedulerName: {}
+        f:securityContext: {}
+        f:terminationGracePeriodSeconds: {}
+    manager: kubectl
+    operation: Update
+    time: "2020-06-20T14:29:33Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        f:conditions:
+          k:{"type":"ContainersReady"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Initialized"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Ready"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:status: {}
+            f:type: {}
+        f:containerStatuses: {}
+        f:hostIP: {}
+        f:phase: {}
+        f:podIP: {}
+        f:podIPs:
+          .: {}
+          k:{"ip":"172.17.0.4"}:
+            .: {}
+            f:ip: {}
+        f:startTime: {}
+    manager: kubelet
+    operation: Update
+    time: "2020-06-20T14:30:44Z"
+  name: myfirstpod
+  namespace: default
+  resourceVersion: "376262"
+  selfLink: /api/v1/namespaces/default/pods/myfirstpod
+  uid: 5ab7d15c-ced3-43b5-baaf-3b9aa80f67f4
+spec:
+  containers:
+  - image: aamirpinger/helloworld:latest
+    imagePullPolicy: Always
+    name: container1
+    ports:
+    - containerPort: 80
+      protocol: TCP
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-m7jwp
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: minikube
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: default-token-m7jwp
+    secret:
+      defaultMode: 420
+      secretName: default-token-m7jwp
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2020-06-20T14:29:33Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2020-06-20T14:30:44Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2020-06-20T14:30:44Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2020-06-20T14:29:33Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: docker://4bc0871891d1907ec1e314a0aa99842c8ed41344609df8bdc49fc78db83652d6
+    image: aamirpinger/helloworld:latest
+    imageID: docker-pullable://aamirpinger/helloworld@sha256:32dea8e4d394edc996c62648e0abc90ec3371ada9e30decfc733ae7160e21466
+    lastState: {}
+    name: container1
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2020-06-20T14:30:44Z"
+  hostIP: 192.168.64.3
+  phase: Running
+  podIP: 172.17.0.4
+  podIPs:
+  - ip: 172.17.0.4
+  qosClass: BestEffort
+  startTime: "2020-06-20T14:29:33Z"
+  ```
+  
+  ## Get info of a already created pod in json format
+```
+$ kubectl get po myfirstpod -o json
+```
+##### Result
+```
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+        "creationTimestamp": "2020-06-20T14:29:33Z",
+        "managedFields": [
+            {
+                "apiVersion": "v1",
+                "fieldsType": "FieldsV1",
+                "fieldsV1": {
+                    "f:spec": {
+                        "f:containers": {
+                            "k:{\"name\":\"container1\"}": {
+                                ".": {},
+                                "f:image": {},
+                                "f:imagePullPolicy": {},
+                                "f:name": {},
+                                "f:ports": {
+                                    ".": {},
+                                    "k:{\"containerPort\":80,\"protocol\":\"TCP\"}": {
+                                        ".": {},
+                                        "f:containerPort": {},
+                                        "f:protocol": {}
+                                    }
+                                },
+                                "f:resources": {},
+                                "f:terminationMessagePath": {},
+                                "f:terminationMessagePolicy": {}
+                            }
+                        },
+                        "f:dnsPolicy": {},
+                        "f:enableServiceLinks": {},
+                        "f:restartPolicy": {},
+                        "f:schedulerName": {},
+                        "f:securityContext": {},
+                        "f:terminationGracePeriodSeconds": {}
+                    }
+                },
+                "manager": "kubectl",
+                "operation": "Update",
+                "time": "2020-06-20T14:29:33Z"
+            },
+            {
+                "apiVersion": "v1",
+                "fieldsType": "FieldsV1",
+                "fieldsV1": {
+                    "f:status": {
+                        "f:conditions": {
+                            "k:{\"type\":\"ContainersReady\"}": {
+                                ".": {},
+                                "f:lastProbeTime": {},
+                                "f:lastTransitionTime": {},
+                                "f:status": {},
+                                "f:type": {}
+                            },
+                            "k:{\"type\":\"Initialized\"}": {
+                                ".": {},
+                                "f:lastProbeTime": {},
+                                "f:lastTransitionTime": {},
+                                "f:status": {},
+                                "f:type": {}
+                            },
+                            "k:{\"type\":\"Ready\"}": {
+                                ".": {},
+                                "f:lastProbeTime": {},
+                                "f:lastTransitionTime": {},
+                                "f:status": {},
+                                "f:type": {}
+                            }
+                        },
+                        "f:containerStatuses": {},
+                        "f:hostIP": {},
+                        "f:phase": {},
+                        "f:podIP": {},
+                        "f:podIPs": {
+                            ".": {},
+                            "k:{\"ip\":\"172.17.0.4\"}": {
+                                ".": {},
+                                "f:ip": {}
+                            }
+                        },
+                        "f:startTime": {}
+                    }
+                },
+                "manager": "kubelet",
+                "operation": "Update",
+                "time": "2020-06-20T14:30:44Z"
+            }
+        ],
+        "name": "myfirstpod",
+        "namespace": "default",
+        "resourceVersion": "376262",
+        "selfLink": "/api/v1/namespaces/default/pods/myfirstpod",
+        "uid": "5ab7d15c-ced3-43b5-baaf-3b9aa80f67f4"
+    },
+    "spec": {
+        "containers": [
+            {
+                "image": "aamirpinger/helloworld:latest",
+                "imagePullPolicy": "Always",
+                "name": "container1",
+                "ports": [
+                    {
+                        "containerPort": 80,
+                        "protocol": "TCP"
+                    }
+                ],
+                "resources": {},
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "default-token-m7jwp",
+                        "readOnly": true
+                    }
+                ]
+            }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "enableServiceLinks": true,
+        "nodeName": "minikube",
+        "priority": 0,
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "serviceAccount": "default",
+        "serviceAccountName": "default",
+        "terminationGracePeriodSeconds": 30,
+        "tolerations": [
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/not-ready",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            },
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/unreachable",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            }
+        ],
+        "volumes": [
+            {
+                "name": "default-token-m7jwp",
+                "secret": {
+                    "defaultMode": 420,
+                    "secretName": "default-token-m7jwp"
+                }
+            }
+        ]
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2020-06-20T14:29:33Z",
+                "status": "True",
+                "type": "Initialized"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2020-06-20T14:30:44Z",
+                "status": "True",
+                "type": "Ready"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2020-06-20T14:30:44Z",
+                "status": "True",
+                "type": "ContainersReady"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2020-06-20T14:29:33Z",
+                "status": "True",
+                "type": "PodScheduled"
+            }
+        ],
+        "containerStatuses": [
+            {
+                "containerID": "docker://4bc0871891d1907ec1e314a0aa99842c8ed41344609df8bdc49fc78db83652d6",
+                "image": "aamirpinger/helloworld:latest",
+                "imageID": "docker-pullable://aamirpinger/helloworld@sha256:32dea8e4d394edc996c62648e0abc90ec3371ada9e30decfc733ae7160e21466",
+                "lastState": {},
+                "name": "container1",
+                "ready": true,
+                "restartCount": 0,
+                "started": true,
+                "state": {
+                    "running": {
+                        "startedAt": "2020-06-20T14:30:44Z"
+                    }
+                }
+            }
+        ],
+        "hostIP": "192.168.64.3",
+        "phase": "Running",
+        "podIP": "172.17.0.4",
+        "podIPs": [
+            {
+                "ip": "172.17.0.4"
+            }
+        ],
+        "qosClass": "BestEffort",
+        "startTime": "2020-06-20T14:29:33Z"
+    }
+}
+```
