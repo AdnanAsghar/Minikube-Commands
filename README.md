@@ -1,6 +1,6 @@
 # Minikube-Commands
 
-## Start minikude
+* ## Start minikude
 ```
 $ minikube start
 ```
