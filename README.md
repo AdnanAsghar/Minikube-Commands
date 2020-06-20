@@ -715,9 +715,60 @@ Events:
   Normal  Created    18m        kubelet, minikube  Created container container1
   Normal  Started    18m        kubelet, minikube  Started container container1
 ```
-## 
+## Create a pod from command line
 ```
+$ kubectl run <GIVE_NAME_TO_POD> --image <GIVE_IMAGE_NAME> --port <GIVE_PORT> --restart Never
+```
+as
+```
+$ kubectl run mysecondpod --image aamirpinger/helloworld --port 80 --restart Never
 ```
 ##### Result
 ```
+pod/mysecondpod created
+```
+
+## Forward a pod to a port number
+```
+$ kubectl port-forward <POD_NAME> <PORT_NUMBER>:80
+```
+as
+```
+$ kubectl port-forward myfirstpod 6500:80
+```
+##### Result
+```
+Forwarding from 127.0.0.1:6500 -> 80
+Forwarding from [::1]:6500 -> 80
+Handling connection for 6500
+```
+##### Exit port forwarding
+```
+Press Ctrl+C to exit port forwarding.
+```
+
+## Labels yaml file
+Create a pod file named myfirstpodwithlabels.yaml
+```
+kind: Pod
+apiVersion: v1
+metdata: 
+  name: myfirstpodwithlabels
+  labels:
+    type: backend
+    env: production
+spec: 
+  containers:
+    - image: aamirpinger/helloworld:latest
+      name: container1
+      ports:
+      - containerPort: 80
+```
+Then run
+```
+$ kubectl create -f myfirstpodwithlabels.yaml
+```
+##### Result
+```
+pod/myfirstpodwithlabels created
 ```
