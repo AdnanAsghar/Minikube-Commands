@@ -1,6 +1,6 @@
 # Minikube-Commands
 
-## Start Minikude
+## Start minikude
 
 ```
 $ minikube start
@@ -15,10 +15,10 @@ $ minikube start
 🏄  Done! kubectl is now configured to use "minikube"
 ```
 
-## Check Minikube Status
+## Check minikube Status
 
 ```
-minikube status
+$ minikube status
 
 minikube
 type: Control Plane
