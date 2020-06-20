@@ -1128,3 +1128,60 @@ mysecondpodwithlabels   1/1     Running   0          70m    env=development,type
 pod1                    0/1     Error     0          9d     run=pod1
 podwithnodeselector     1/1     Running   0          21m    <none>
 ```
+
+## Create Pod with Annotations
+First create a yaml file named "podwithannotation.yaml"
+```
+kind: Pod
+apiVersion: v1
+metadata:
+  name: podwithannotation
+  annotations: 
+    createdBy: "Adnan Asghar"
+    createdOn: June 21st 2020
+spec:
+  containers:
+  - name: container1
+    image: aamirpinger/flag:latest
+    ports:
+    - containerPort: 80
+```
+Now create a pod with file using ```$ kubectl create -f podwithannotation.yaml```
+##### Result
+```
+pod/podwithannotation created
+```
+
+## Annotate a running pod
+```
+$ kubectl annotate pod podwithannotation description="This is test app to learn pods and annotaions"
+```
+##### Result
+```
+pod/podwithannotation annotated
+```
+A ruuning pod can also be annotated using
+```
+$ kubectl annotate pod podwithannotation description="This is test app to learn pods and annotaions"
+```
+##### Result
+```
+pod/podwithannotation annotated
+```
+You can check the changes using command ```$ kubectl describe pod podwithannotation```
+#### Result
+```
+Name:         podwithannotation
+Namespace:    default
+Priority:     0
+Node:         minikube/192.168.64.3
+Start Time:   Sun, 21 Jun 2020 00:54:18 +0500
+Labels:       <none>
+Annotations:  createdBy: Adnan Asghar
+              createdOn: June 21st 2020
+              description: This is test app to learn pods and annotaions
+Status:       Running
+IP:           172.17.0.9
+.....
+```
+
