@@ -1,6 +1,6 @@
 # Minikube-Commands
 
-minikube start
+# minikube start
 
 😄  minikube v1.11.0 on Darwin 10.15.5
 ✨  Using the hyperkit driver based on existing profile
