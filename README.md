@@ -853,3 +853,116 @@ $ kubectl label pods myfirstpod type=backend --overwrite
 ```
 pod/myfirstpod labeled
 ```
+
+## Remove an already created label
+```
+$ kubectl label pods myfirstpod app-
+```
+##### Result
+```
+pod/myfirstpod labeled
+```
+
+## Remove and overwrite already created label
+```
+$ kubectl label pods myfirstpodwithlabels type- env=development --overwrite
+```
+##### Result
+```
+pod/myfirstpodwithlabels labeled
+```
+
+## Label Selector
+```
+$ kubectl get po --show-labels
+```
+##### Result
+```
+NAME                    READY   STATUS    RESTARTS   AGE    LABELS
+myfirstpod              1/1     Running   0          111m   type=backend
+myfirstpodwithlabels    1/1     Running   0          28m    env=production,type=backend
+mysecondpod             1/1     Running   0          50m    run=mysecondpod
+mysecondpodwithlabels   1/1     Running   0          23m    env=development,type=frontend
+pod1                    0/1     Error     0          9d     run=pod1
+```
+
+```
+$ kubectl get pods -l type=frontend
+```
+##### Result
+```
+NAME                    READY   STATUS    RESTARTS   AGE
+mysecondpodwithlabels   1/1     Running   0          30m
+```
+
+```
+$ kubectl get pods -l type=frontend --show-labels
+```
+##### Result
+```
+NAME                    READY   STATUS    RESTARTS   AGE   LABELS
+mysecondpodwithlabels   1/1     Running   0          31m   env=development,type=frontend
+```
+
+```
+$ kubectl get pods -l type!=frontend --show-labels
+```
+##### Result
+```
+NAME                   READY   STATUS    RESTARTS   AGE    LABELS
+myfirstpod             1/1     Running   0          118m   type=backend
+myfirstpodwithlabels   1/1     Running   0          35m    env=development
+mysecondpod            1/1     Running   0          57m    run=mysecondpod
+pod1                   0/1     Error     0          9d     run=pod1
+```
+
+```
+$ kubectl get pods -l type!=frontend,env=development --show-labels
+```
+##### Result
+```
+NAME                   READY   STATUS    RESTARTS   AGE   LABELS
+myfirstpodwithlabels   1/1     Running   0          36m   env=development
+```
+
+```
+$ kubectl get pods -l env --show-labels
+```
+##### Result
+```
+NAME                    READY   STATUS    RESTARTS   AGE   LABELS
+myfirstpodwithlabels    1/1     Running   0          37m   env=development
+mysecondpodwithlabels   1/1     Running   0          32m   env=development,type=frontend
+```
+
+```
+$ kubectl get pods -l '!env' --show-labels
+```
+##### Result
+```
+NAME          READY   STATUS    RESTARTS   AGE    LABELS
+myfirstpod    1/1     Running   0          121m   type=backend
+mysecondpod   1/1     Running   0          60m    run=mysecondpod
+pod1          0/1     Error     0          9d     run=pod1
+```
+
+```
+$ kubectl get pods -l 'type in (frontend,backend)' --show-labels
+```
+##### Result
+```
+NAME                    READY   STATUS    RESTARTS   AGE    LABELS
+myfirstpod              1/1     Running   0          122m   type=backend
+mysecondpodwithlabels   1/1     Running   0          34m    env=development,type=frontend
+```
+
+```
+$ kubectl get pods -l 'type notin (frontend,backend)' --show-labels
+```
+##### Result
+```
+NAME                   READY   STATUS    RESTARTS   AGE   LABELS
+myfirstpodwithlabels   1/1     Running   0          40m   env=development
+mysecondpod            1/1     Running   0          62m   run=mysecondpod
+pod1                   0/1     Error     0          9d    run=pod1
+```
