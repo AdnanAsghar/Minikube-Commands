@@ -772,3 +772,84 @@ $ kubectl create -f myfirstpodwithlabels.yaml
 ```
 pod/myfirstpodwithlabels created
 ```
+
+## Give labels to a pod using CLI
+```
+$ kubectl run mysecondpodwithlabels --image aamirpinger/helloworld --port 80 --restart Never --labels=type=frontend,env=development
+```
+##### Result
+```
+pod/mysecondpodwithlabels created
+```
+
+## Pod Listing with Labels
+```
+$ kubectl get po --show-labels
+```
+##### Result
+```
+NAME                    READY   STATUS    RESTARTS   AGE     LABELS
+myfirstpod              1/1     Running   0          90m     <none>
+myfirstpodwithlabels    1/1     Running   0          7m45s   env=production,type=backend
+mysecondpod             1/1     Running   0          29m     run=mysecondpod
+mysecondpodwithlabels   1/1     Running   0          3m3s    env=development,type=frontend
+pod1                    0/1     Error     0          9d      run=pod1
+```
+
+## Pod Listing with Specific Label
+```
+$ kubectl get po -L env
+```
+##### Result
+```
+NAME                    READY   STATUS    RESTARTS   AGE     ENV
+myfirstpod              1/1     Running   0          93m     
+myfirstpodwithlabels    1/1     Running   0          10m     production
+mysecondpod             1/1     Running   0          32m     
+mysecondpodwithlabels   1/1     Running   0          5m34s   development
+pod1                    0/1     Error     0          9d      
+```
+
+## Pod Listing with Specific Labels
+```
+$ kubectl get po -L env,type,run
+```
+##### Result
+```
+NAME                    READY   STATUS    RESTARTS   AGE     ENV           TYPE       RUN
+myfirstpod              1/1     Running   0          95m                              
+myfirstpodwithlabels    1/1     Running   0          12m     production    backend    
+mysecondpod             1/1     Running   0          34m                              mysecondpod
+mysecondpodwithlabels   1/1     Running   0          7m32s   development   frontend   
+pod1                    0/1     Error     0          9d                               pod1
+```
+
+## Labelling Pod at Runtime
+```
+$ kubectl label pods <POD_NAME> <LABEL_NAME>=<LABEL_VALUE> <LABEL_NAME>=<LABEL_VALUE>
+```
+as
+```
+$ kubectl label pods myfirstpod app=helloworld type=frontend
+```
+##### Result
+```
+pod/myfirstpod labeled
+```
+
+## Overwrite an already created label
+```
+$ kubectl label pods myfirstpod type=backend
+```
+##### Result
+```
+error: 'type' already has a value (frontend), and --overwrite is false
+```
+after adding overwrite
+```
+$ kubectl label pods myfirstpod type=backend --overwrite
+```
+##### Result
+```
+pod/myfirstpod labeled
+```
