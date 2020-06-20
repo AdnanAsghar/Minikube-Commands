@@ -1160,14 +1160,6 @@ $ kubectl annotate pod podwithannotation description="This is test app to learn 
 ```
 pod/podwithannotation annotated
 ```
-A ruuning pod can also be annotated using
-```
-$ kubectl annotate pod podwithannotation description="This is test app to learn pods and annotaions"
-```
-##### Result
-```
-pod/podwithannotation annotated
-```
 You can check the changes using command ```$ kubectl describe pod podwithannotation```
 #### Result
 ```
