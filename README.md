@@ -256,9 +256,24 @@ spec:
 Run $ kubectl create -f <FILE_NAME>.yaml to create a pod
 
 ```
-as
 $ kubectl create -f mypod.yaml
+```
 ##### Result
 ```
 pod/myfirstpod created
+```
+
+## Get all pods
+```
+$ kubectl get pod
+or
+$ kubectl get pods
+or
+$ kubectl get po
+```
+##### Result
+```
+NAME         READY   STATUS    RESTARTS   AGE
+myfirstpod   1/1     Running   0          5m48s
+pod1         0/1     Error     0          9d
 ```
