@@ -2,11 +2,11 @@
 
 ## Start minikude
 
-#### Command
+##### Command
 ```
 $ minikube start
 ```
-#### Result
+##### Result
 ```
 😄  minikube v1.11.0 on Darwin 10.15.5
 ✨  Using the hyperkit driver based on existing profile
@@ -19,11 +19,11 @@ $ minikube start
 ```
 
 ## Check minikube Status
-### Command
+##### Command
 ```
 $ minikube status
 ```
-#### Result
+##### Result
 ```
 minikube
 type: Control Plane
