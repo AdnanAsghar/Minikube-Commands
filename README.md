@@ -182,14 +182,14 @@ Unschedulable:      false
 Lease:
   HolderIdentity:  minikube
   AcquireTime:     <unset>
-  RenewTime:       Sat, 20 Jun 2020 18:55:18 +0500
+  RenewTime:       Sat, 20 Jun 2020 19:06:59 +0500
 Conditions:
   Type             Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
   ----             ------  -----------------                 ------------------                ------                       -------
-  MemoryPressure   False   Sat, 20 Jun 2020 18:54:39 +0500   Tue, 16 Jun 2020 06:59:23 +0500   KubeletHasSufficientMemory   kubelet has sufficient memory available
-  DiskPressure     False   Sat, 20 Jun 2020 18:54:39 +0500   Tue, 16 Jun 2020 06:59:23 +0500   KubeletHasNoDiskPressure     kubelet has no disk pressure
-  PIDPressure      False   Sat, 20 Jun 2020 18:54:39 +0500   Tue, 16 Jun 2020 06:59:23 +0500   KubeletHasSufficientPID      kubelet has sufficient PID available
-  Ready            True    Sat, 20 Jun 2020 18:54:39 +0500   Tue, 16 Jun 2020 06:59:23 +0500   KubeletReady                 kubelet is posting ready status
+  MemoryPressure   False   Sat, 20 Jun 2020 19:04:41 +0500   Tue, 16 Jun 2020 06:59:23 +0500   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure     False   Sat, 20 Jun 2020 19:04:41 +0500   Tue, 16 Jun 2020 06:59:23 +0500   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure      False   Sat, 20 Jun 2020 19:04:41 +0500   Tue, 16 Jun 2020 06:59:23 +0500   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready            True    Sat, 20 Jun 2020 19:04:41 +0500   Tue, 16 Jun 2020 06:59:23 +0500   KubeletReady                 kubelet is posting ready status
 Addresses:
   InternalIP:  192.168.64.3
   Hostname:    minikube
@@ -219,14 +219,14 @@ System Info:
 Non-terminated Pods:          (8 in total)
   Namespace                   Name                                CPU Requests  CPU Limits  Memory Requests  Memory Limits  AGE
   ---------                   ----                                ------------  ----------  ---------------  -------------  ---
-  kube-system                 coredns-66bff467f8-hvbrm            100m (5%)     0 (0%)      70Mi (1%)        170Mi (4%)     8d
-  kube-system                 coredns-66bff467f8-j6x25            100m (5%)     0 (0%)      70Mi (1%)        170Mi (4%)     8d
-  kube-system                 etcd-minikube                       0 (0%)        0 (0%)      0 (0%)           0 (0%)         8d
-  kube-system                 kube-apiserver-minikube             250m (12%)    0 (0%)      0 (0%)           0 (0%)         8d
-  kube-system                 kube-controller-manager-minikube    200m (10%)    0 (0%)      0 (0%)           0 (0%)         8d
-  kube-system                 kube-proxy-hdvwk                    0 (0%)        0 (0%)      0 (0%)           0 (0%)         8d
-  kube-system                 kube-scheduler-minikube             100m (5%)     0 (0%)      0 (0%)           0 (0%)         8d
-  kube-system                 storage-provisioner                 0 (0%)        0 (0%)      0 (0%)           0 (0%)         8d
+  kube-system                 coredns-66bff467f8-hvbrm            100m (5%)     0 (0%)      70Mi (1%)        170Mi (4%)     9d
+  kube-system                 coredns-66bff467f8-j6x25            100m (5%)     0 (0%)      70Mi (1%)        170Mi (4%)     9d
+  kube-system                 etcd-minikube                       0 (0%)        0 (0%)      0 (0%)           0 (0%)         9d
+  kube-system                 kube-apiserver-minikube             250m (12%)    0 (0%)      0 (0%)           0 (0%)         9d
+  kube-system                 kube-controller-manager-minikube    200m (10%)    0 (0%)      0 (0%)           0 (0%)         9d
+  kube-system                 kube-proxy-hdvwk                    0 (0%)        0 (0%)      0 (0%)           0 (0%)         9d
+  kube-system                 kube-scheduler-minikube             100m (5%)     0 (0%)      0 (0%)           0 (0%)         9d
+  kube-system                 storage-provisioner                 0 (0%)        0 (0%)      0 (0%)           0 (0%)         9d
 Allocated resources:
   (Total limits may be over 100 percent, i.e., overcommitted.)
   Resource           Requests    Limits
@@ -235,18 +235,30 @@ Allocated resources:
   memory             140Mi (3%)  340Mi (8%)
   ephemeral-storage  0 (0%)      0 (0%)
   hugepages-2Mi      0 (0%)      0 (0%)
-Events:
-  Type    Reason                   Age                    From                  Message
-  ----    ------                   ----                   ----                  -------
-  Normal  NodeNotReady             4d13h (x2 over 5d18h)  kubelet, minikube     Node minikube status is now: NodeNotReady
-  Normal  NodeHasSufficientMemory  4d11h (x10 over 8d)    kubelet, minikube     Node minikube status is now: NodeHasSufficientMemory
-  Normal  NodeHasNoDiskPressure    4d11h (x10 over 8d)    kubelet, minikube     Node minikube status is now: NodeHasNoDiskPressure
-  Normal  NodeHasSufficientPID     4d11h (x10 over 8d)    kubelet, minikube     Node minikube status is now: NodeHasSufficientPID
-  Normal  NodeReady                4d11h (x10 over 8d)    kubelet, minikube     Node minikube status is now: NodeReady
-  Normal  Starting                 51m                    kubelet, minikube     Starting kubelet.
-  Normal  NodeHasSufficientMemory  51m (x8 over 51m)      kubelet, minikube     Node minikube status is now: NodeHasSufficientMemory
-  Normal  NodeHasNoDiskPressure    51m (x8 over 51m)      kubelet, minikube     Node minikube status is now: NodeHasNoDiskPressure
-  Normal  NodeHasSufficientPID     51m (x7 over 51m)      kubelet, minikube     Node minikube status is now: NodeHasSufficientPID
-  Normal  NodeAllocatableEnforced  51m                    kubelet, minikube     Updated Node Allocatable limit across pods
-  Normal  Starting                 50m                    kube-proxy, minikube  Starting kube-proxy.
+Events:              <none>
+```
+
+## Create a pod through yaml file
+create the below yaml file as mypod.yaml
+```
+kind: Pod
+apiVersion: v1
+metadata:
+  name: myfirstpod
+spec: 
+  containers:
+  - name: container1
+    image: aamirpinger/helloworld:latest
+    ports:
+    - containerPort: 80
+```
+
+Run $ kubectl create -f <FILE_NAME>.yaml to create a pod
+
+```
+as
+$ kubectl create -f mypod.yaml
+##### Result
+```
+pod/myfirstpod created
 ```
