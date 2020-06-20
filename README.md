@@ -434,9 +434,12 @@ status:
   - ip: 172.17.0.4
   qosClass: BestEffort
   startTime: "2020-06-20T14:29:33Z"
-  ```
-  
-  ## Get info of a already created pod in json format
+```
+## Get info of a already created pod in json format
+```
+$ kubectl get po <POD_NAME> -o json
+```
+as
 ```
 $ kubectl get po myfirstpod -o json
 ```
