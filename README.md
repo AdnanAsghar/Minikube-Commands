@@ -966,3 +966,146 @@ myfirstpodwithlabels   1/1     Running   0          40m   env=development
 mysecondpod            1/1     Running   0          62m   run=mysecondpod
 pod1                   0/1     Error     0          9d    run=pod1
 ```
+
+## Pods Scheduling With Node Selector
+Create a yaml file named podwithnodeselector
+```
+kind: Pod
+apiVersion: v1
+metadata:
+  name: podwithnodeselector
+spec:
+  nodeSelector:
+    typeofharddisk: ssd
+  containers:
+  - name: container1
+    image: aamirpinger/flag:latest
+    ports:
+    - containerPort: 80
+```
+Create a pod with yaml file
+```
+$ kubectl create -f podwithnodselector.yaml
+```
+Get pods with ```$ kubectl get pods```
+```
+NAME                    READY   STATUS    RESTARTS   AGE
+myfirstpod              1/1     Running   0          137m
+myfirstpodwithlabels    1/1     Running   0          54m
+mysecondpod             1/1     Running   0          76m
+mysecondpodwithlabels   1/1     Running   0          49m
+pod1                    0/1     Error     0          9d
+podwithnodeselector     0/1     Pending   0          16s
+```
+The status of new pod is pending so we have to check the yaml file of created pod for error. Run ```$ kubectl get po podwithnodeselector -o yaml```
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2020-06-20T16:46:19Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        f:conditions:
+          .: {}
+          k:{"type":"PodScheduled"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+    manager: kube-scheduler
+    operation: Update
+    time: "2020-06-20T16:46:19Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:spec:
+        f:containers:
+          k:{"name":"container1"}:
+            .: {}
+            f:image: {}
+            f:imagePullPolicy: {}
+            f:name: {}
+            f:ports:
+              .: {}
+              k:{"containerPort":80,"protocol":"TCP"}:
+                .: {}
+                f:containerPort: {}
+                f:protocol: {}
+            f:resources: {}
+            f:terminationMessagePath: {}
+            f:terminationMessagePolicy: {}
+        f:dnsPolicy: {}
+        f:enableServiceLinks: {}
+        f:nodeSelector:
+          .: {}
+          f:typeofharddisk: {}
+        f:restartPolicy: {}
+        f:schedulerName: {}
+        f:securityContext: {}
+        f:terminationGracePeriodSeconds: {}
+    manager: kubectl
+    operation: Update
+    time: "2020-06-20T16:46:19Z"
+  name: podwithnodeselector
+  namespace: default
+  resourceVersion: "394092"
+  selfLink: /api/v1/namespaces/default/pods/podwithnodeselector
+  uid: 5bc6ad13-91dc-4d02-a306-2d36415fffe1
+spec:
+  containers:
+  - image: aamirpinger/flag:latest
+    imagePullPolicy: Always
+    name: container1
+    ports:
+    - containerPort: 80
+      protocol: TCP
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-m7jwp
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeSelector:
+    typeofharddisk: ssd
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: default-token-m7jwp
+    secret:
+      defaultMode: 420
+      secretName: default-token-m7jwp
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2020-06-20T16:46:19Z"
+    message: '0/1 nodes are available: 1 node(s) didn''t match node selector.'
+    reason: Unschedulable
+    status: "False"
+    type: PodScheduled
+  phase: Pending
+  qosClass: BestEffort
+```
+Error is ```message: '0/1 nodes are available: 1 node(s) didn''t match node selector.'```
