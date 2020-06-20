@@ -655,3 +655,69 @@ $ kubectl get po myfirstpod -o json
     }
 }
 ```
+
+## Get description of a pod
+```
+$ kubectl describe po <POD_NAME>
+```
+as
+```
+$ kubectl describe po myfirstpod
+```
+##### Result
+```
+Name:         myfirstpod
+Namespace:    default
+Priority:     0
+Node:         minikube/192.168.64.3
+Start Time:   Sat, 20 Jun 2020 19:29:33 +0500
+Labels:       <none>
+Annotations:  <none>
+Status:       Running
+IP:           172.17.0.4
+IPs:
+  IP:  172.17.0.4
+Containers:
+  container1:
+    Container ID:   docker://4bc0871891d1907ec1e314a0aa99842c8ed41344609df8bdc49fc78db83652d6
+    Image:          aamirpinger/helloworld:latest
+    Image ID:       docker-pullable://aamirpinger/helloworld@sha256:32dea8e4d394edc996c62648e0abc90ec3371ada9e30decfc733ae7160e21466
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sat, 20 Jun 2020 19:30:44 +0500
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-m7jwp (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  default-token-m7jwp:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-m7jwp
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute for 300s
+                 node.kubernetes.io/unreachable:NoExecute for 300s
+Events:
+  Type    Reason     Age        From               Message
+  ----    ------     ----       ----               -------
+  Normal  Scheduled  <unknown>  default-scheduler  Successfully assigned default/myfirstpod to minikube
+  Normal  Pulling    19m        kubelet, minikube  Pulling image "aamirpinger/helloworld:latest"
+  Normal  Pulled     18m        kubelet, minikube  Successfully pulled image "aamirpinger/helloworld:latest"
+  Normal  Created    18m        kubelet, minikube  Created container container1
+  Normal  Started    18m        kubelet, minikube  Started container container1
+```
+## 
+```
+```
+##### Result
+```
+```
