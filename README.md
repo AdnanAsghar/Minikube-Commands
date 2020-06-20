@@ -1116,5 +1116,15 @@ node/minikube labeled
 Get nodes with labels using ```$ kubectl get nodes --show-labels```
 ```
 NAME       STATUS   ROLES    AGE   VERSION   LABELS
-minikube   Ready    master   9d    v1.18.3   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=minikube,kubernetes.io/os=linux,minikube.k8s.io/commit=57e2f55f47effe9ce396cea42a1e0eb4f611ebbd,minikube.k8s.io/name=minikube,minikube.k8s.io/updated_at=2020_06_11T19_02_35_0700,minikube.k8s.io/version=v1.11.0,node-role.kubernetes.io/master=,**typeofharddisk=ssd**
+minikube   Ready    master   9d    v1.18.3   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=minikube,kubernetes.io/os=linux,minikube.k8s.io/commit=57e2f55f47effe9ce396cea42a1e0eb4f611ebbd,minikube.k8s.io/name=minikube,minikube.k8s.io/updated_at=2020_06_11T19_02_35_0700,minikube.k8s.io/version=v1.11.0,node-role.kubernetes.io/master=,typeofharddisk=ssd
+```
+Now run ```$ kubectl get pods --show-labels``` and the pod is in running state
+```
+NAME                    READY   STATUS    RESTARTS   AGE    LABELS
+myfirstpod              1/1     Running   0          158m   type=backend
+myfirstpodwithlabels    1/1     Running   0          75m    env=development
+mysecondpod             1/1     Running   0          97m    run=mysecondpod
+mysecondpodwithlabels   1/1     Running   0          70m    env=development,type=frontend
+pod1                    0/1     Error     0          9d     run=pod1
+podwithnodeselector     1/1     Running   0          21m    <none>
 ```
