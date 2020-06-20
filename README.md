@@ -2,11 +2,11 @@
 
 ## Start minikude
 
-### Command
+#### Command
 ```
 $ minikube start
 ```
-### Response
+#### Result
 ```
 😄  minikube v1.11.0 on Darwin 10.15.5
 ✨  Using the hyperkit driver based on existing profile
@@ -19,10 +19,12 @@ $ minikube start
 ```
 
 ## Check minikube Status
-
+### Command
 ```
 $ minikube status
-
+```
+#### Result
+```
 minikube
 type: Control Plane
 host: Running
