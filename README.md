@@ -1,8 +1,6 @@
 # Minikube-Commands
 
 ## Start minikude
-
-##### Command
 ```
 $ minikube start
 ```
@@ -19,7 +17,6 @@ $ minikube start
 ```
 
 ## Check minikube Status
-##### Command
 ```
 $ minikube status
 ```
@@ -37,7 +34,9 @@ kubeconfig: Configured
 
 ```
 $ kubectl cluster-info
-
+```
+##### Result
+```
 Kubernetes master is running at https://192.168.64.3:8443
 KubeDNS is running at https://192.168.64.3:8443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
 
@@ -45,23 +44,25 @@ To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 ```
 
 ## Get Nodes
-
 ```
 $ kubectl get nodes
 or
 $ kubectl get nodes
-
+```
+##### Result
+```
 NAME       STATUS   ROLES    AGE   VERSION
 minikube   Ready    master   8d    v1.18.3
 ```
 
 ## Get Description of all Nodes 
-
 ```
 $ kubectl describe nodes
 or
 $ kubectl describe no
-
+```
+##### Result
+```
 Name:               minikube
 Roles:              master
 Labels:             beta.kubernetes.io/arch=amd64
