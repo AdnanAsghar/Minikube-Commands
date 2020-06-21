@@ -1244,3 +1244,166 @@ then run ```$ kubectl create namespace production```
 ```
 namespace/production created
 ```
+
+## Listing Pod from All Namespaces
+```
+$ kubectl get pods --all-namespaces
+```
+##### Result
+```
+NAMESPACE     NAME                               READY   STATUS    RESTARTS   AGE
+default       myfirstpod                         1/1     Running   0          23h
+default       myfirstpodwithlabels               1/1     Running   0          22h
+default       mysecondpod                        1/1     Running   0          22h
+default       mysecondpodwithlabels              1/1     Running   0          22h
+default       pod1                               0/1     Error     0          10d
+default       podwithannotation                  1/1     Running   0          18h
+default       podwithnodeselector                1/1     Running   0          21h
+development   nsexample                          1/1     Running   0          14m
+kube-system   coredns-66bff467f8-hvbrm           1/1     Running   1          10d
+kube-system   coredns-66bff467f8-j6x25           1/1     Running   1          10d
+kube-system   etcd-minikube                      1/1     Running   0          10d
+kube-system   kube-apiserver-minikube            1/1     Running   3          10d
+kube-system   kube-controller-manager-minikube   1/1     Running   0          10d
+kube-system   kube-proxy-hdvwk                   1/1     Running   1          10d
+kube-system   kube-scheduler-minikube            1/1     Running   5          10d
+kube-system   storage-provisioner                1/1     Running   1          10d
+production    myfirstpod                         1/1     Running   0          17m
+```
+
+## Deleting Resource
+```
+$ kubectl delete pod myfirstpod
+```
+##### Result
+```
+pod "myfirstpod" deleted
+```
+
+```
+$ kubectl get pods --all-namespaces
+```
+##### Result
+```
+NAMESPACE     NAME                               READY   STATUS    RESTARTS   AGE
+default       myfirstpodwithlabels               1/1     Running   0          22h
+default       mysecondpod                        1/1     Running   0          23h
+default       mysecondpodwithlabels              1/1     Running   0          22h
+default       pod1                               0/1     Error     0          10d
+default       podwithannotation                  1/1     Running   0          18h
+default       podwithnodeselector                1/1     Running   0          21h
+development   nsexample                          1/1     Running   0          32m
+kube-system   coredns-66bff467f8-hvbrm           1/1     Running   1          10d
+kube-system   coredns-66bff467f8-j6x25           1/1     Running   1          10d
+kube-system   etcd-minikube                      1/1     Running   0          10d
+kube-system   kube-apiserver-minikube            1/1     Running   3          10d
+kube-system   kube-controller-manager-minikube   1/1     Running   0          10d
+kube-system   kube-proxy-hdvwk                   1/1     Running   1          10d
+kube-system   kube-scheduler-minikube            1/1     Running   5          10d
+kube-system   storage-provisioner                1/1     Running   1          10d
+production    myfirstpod                         1/1     Running   0          35m
+```
+
+```
+$ kubectl de$ kubectl delete pod myfirstpod --namespace=productionlete pod myfirstpod
+```
+##### Result
+```
+pod "myfirstpod" deleted
+```
+
+```
+$ kubectl get pods --all-namespaces
+```
+##### Result
+```
+NAMESPACE     NAME                               READY   STATUS    RESTARTS   AGE
+default       myfirstpodwithlabels               1/1     Running   0          22h
+default       mysecondpod                        1/1     Running   0          23h
+default       mysecondpodwithlabels              1/1     Running   0          22h
+default       pod1                               0/1     Error     0          10d
+default       podwithannotation                  1/1     Running   0          18h
+default       podwithnodeselector                1/1     Running   0          21h
+development   nsexample                          1/1     Running   0          33m
+kube-system   coredns-66bff467f8-hvbrm           1/1     Running   1          10d
+kube-system   coredns-66bff467f8-j6x25           1/1     Running   1          10d
+kube-system   etcd-minikube                      1/1     Running   0          10d
+kube-system   kube-apiserver-minikube            1/1     Running   3          10d
+kube-system   kube-controller-manager-minikube   1/1     Running   0          10d
+kube-system   kube-proxy-hdvwk                   1/1     Running   1          10d
+kube-system   kube-scheduler-minikube            1/1     Running   5          10d
+kube-system   storage-provisioner                1/1     Running   1          10d
+```
+
+```
+$ kubectl get ns
+```
+##### Result
+```
+NAME              STATUS   AGE
+default           Active   10d
+development       Active   33m
+kube-node-lease   Active   10d
+kube-public       Active   10d
+kube-system       Active   10d
+production        Active   49m
+```
+
+```
+$ kubectl delete ns development
+```
+##### Result
+```
+namespace "development" deleted
+```
+
+```
+$ kubectl get ns
+```
+##### Result
+```
+NAME              STATUS   AGE
+default           Active   10d
+kube-node-lease   Active   10d
+kube-public       Active   10d
+kube-system       Active   10d
+production        Active   49m
+```
+
+```
+$ kubectl get po --show-labels
+```
+
+```
+NAME                    READY   STATUS    RESTARTS   AGE   LABELS
+myfirstpodwithlabels    1/1     Running   0          22h   env=development
+mysecondpod             1/1     Running   0          23h   run=mysecondpod
+mysecondpodwithlabels   1/1     Running   0          22h   env=development,type=frontend
+pod1                    0/1     Error     0          10d   run=pod1
+podwithannotation       1/1     Running   0          18h   <none>
+podwithnodeselector     1/1     Running   0          21h   <none>
+```
+
+```
+$ kubectl delete po -l env
+```
+
+```
+pod "myfirstpodwithlabels" deleted
+pod "mysecondpodwithlabels" deleted
+```
+
+```
+$ kubectl delete pod --all
+```
+
+```
+pod "mysecondpod" deleted
+pod "pod1" deleted
+pod "podwithannotation" deleted
+pod "podwithnodeselector" deleted
+```
+
+
+
+
