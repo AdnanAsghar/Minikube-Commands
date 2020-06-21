@@ -1177,3 +1177,70 @@ IP:           172.17.0.9
 .....
 ```
 
+## Namespaces
+```$ kubectl create namespace production``` or  ```$ kubectl create ns development```
+##### Result
+```
+namespace/production created
+```
+and then get namespaces using ```$ kubectl get ns```
+##### Result
+```
+NAME              STATUS   AGE
+default           Active   9d
+kube-node-lease   Active   9d
+kube-public       Active   9d
+kube-system       Active   9d
+production        Active   18s
+```
+or get Namespaces with labels using ```$ kubectl get ns --show-labels```
+```
+NAME              STATUS   AGE   LABELS
+default           Active   9d    <none>
+kube-node-lease   Active   9d    <none>
+kube-public       Active   9d    <none>
+kube-system       Active   9d    <none>
+production        Active   38s   <none>
+```
+
+## Pod inside namespace
+create namespace with ```$ kubectl create ns development```
+```
+namespace/development created
+```
+then run
+```
+$ kubectl run nsexample --image=aamirpinger/helloworld --port=80 --restart=Never --namespace=development
+```
+##### Result
+```
+pod/nsexample created
+```
+Then get list with ```$ kubectl get pods --namespace=development```
+##### Result
+```
+NAME        READY   STATUS    RESTARTS   AGE
+nsexample   1/1     Running   0          6m56s
+```
+
+## Pod with namespace with yaml
+Create a yaml file named "myfirstpod.yaml" and run ```$ cat myfirstpod.yaml```
+##### Result
+```
+kind: Pod
+apiVersion: v1
+metadata:
+  name: myfirstpod
+  namespace: production
+spec:
+  containers: 
+  - name: container1
+    image: aamirpinger/helloworld:latest
+    ports:
+    - containerPort: 80
+```
+then run ```$ kubectl create namespace production```
+##### Result
+```
+namespace/production created
+```
